@@ -7,7 +7,6 @@ import Carousel from '../components/Carousel'
 import CarouselItem from '../components/CarouselItem'
 import Footer from '../components/Footer'
 import useInitialState from '../hooks/useInitialState'
-import '../assets/styles/App.scss'
 
 const API = 'http://localhost:3000/initalState'
 
