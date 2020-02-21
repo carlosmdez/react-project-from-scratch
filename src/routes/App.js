@@ -6,15 +6,18 @@ import Register from '../containers/Register'
 import NotFound from '../containers/NotFound'
 
 import '../assets/styles/App.scss'
+import Layout from '../containers/Layout'
 
 const App = () => (
   <BrowserRouter>
-    <Switch>
-      <Route exact path='/' component={Home} />
-      <Route exact path='/login' component={Login} />
-      <Route exact path='/register' component={Register} />
-      <Route component={NotFound} />
-    </Switch>
+    <Layout>
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/register' component={Register} />
+        <Route component={NotFound} />
+      </Switch>
+    </Layout>
   </BrowserRouter>
 )
 

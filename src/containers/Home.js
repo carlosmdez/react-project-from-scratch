@@ -55,17 +55,13 @@ const Home = () => {
     )
   }
   return (
-    <div className='app'>
-      <Header />
+    <>
       <Search />
       {renderMyList}
       {renderTrends}
       {renderOriginals}
-      <Footer />
-    </div>
+    </>
   )
 }
 
 export default Home
-
-
