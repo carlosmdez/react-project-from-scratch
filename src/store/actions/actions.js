@@ -1,2 +1,7 @@
-import { setFavorite, deleteFavorite, loginRequest } from './playlist.action'
-export { setFavorite, deleteFavorite, loginRequest }
+import {
+  setFavorite,
+  deleteFavorite,
+  loginRequest,
+  logoutRequest
+} from './playlist.action'
+export { setFavorite, deleteFavorite, loginRequest, logoutRequest }

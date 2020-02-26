@@ -1,4 +1,9 @@
-import { SET_FAVORITE, DELETE_FAVORITE, LOGIN_REQUEST } from '../types.actions'
+import {
+  SET_FAVORITE,
+  DELETE_FAVORITE,
+  LOGIN_REQUEST,
+  LOGOUT_REQUEST
+} from '../types.actions'
 import { initialState } from '../../assets/data/initialState'
 
 const playlistReducer = (state = initialState, { type, payload }) => {
@@ -13,6 +18,7 @@ const playlistReducer = (state = initialState, { type, payload }) => {
       }
 
     case LOGIN_REQUEST:
+    case LOGOUT_REQUEST:
       return {
         ...state,
         user: payload

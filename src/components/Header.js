@@ -1,18 +1,43 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import {logoutRequest} from '../store/actions/actions'
 import gravatar from '../utils/gravatar'
 import '../assets/styles/components/Header.scss'
 import logo from '../assets/static/logo-platzi-video-BW2.png'
 import userIcon from '../assets/static/user-icon.png'
 
 const Header = props => {
-  const {user} = props
-  let renderUser = <img src={userIcon} alt='user' />
-  if(user.email){
-    const gravatarLink = gravatar(user.email)
-    renderUser = <img src={gravatarLink} alt={user.email} />
+  const { user } = props
+
+  const handleLogout = () => {
+    props.logoutRequest({})
   }
+
+  let renderUser = <img src={userIcon} alt='user' />
+  let renderAccount = null
+  let renderLogin = (
+    <li>
+      <Link to='/login'>Iniciar sesión</Link>
+    </li>
+  )
+
+  if (user.email) {
+    renderUser = <img src={gravatar(user.email)} alt={user.email} />
+    renderAccount = (
+      <li>
+        <a href='/'>Cuenta</a>
+      </li>
+    )
+    renderLogin = (
+      <li>
+        <Link to='#logout' onClick={handleLogout}>
+          Cerrar sesión
+        </Link>
+      </li>
+    )
+  }
+
   return (
     <header className='header'>
       <Link to='/'>
@@ -24,20 +49,21 @@ const Header = props => {
           <p>Perfil</p>
         </div>
         <ul>
-          <li>
-            <a href='/'>Cuenta</a>
-          </li>
-          <li>
-            <Link to='/login'>Iniciar sesión</Link>
-          </li>
+          {renderAccount}
+          {renderLogin}
         </ul>
       </div>
     </header>
   )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   user: state.playlistReducer.user
 })
 
-export default connect(mapStateToProps, null)(Header)
+const mapDispatchToProps = {
+  logoutRequest
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)
