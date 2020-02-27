@@ -50,7 +50,7 @@ const Home = props => {
   }
   return (
     <>
-      <Search />
+      <Search isHome />
       {renderMyList}
       {renderTrends}
       {renderOriginals}
