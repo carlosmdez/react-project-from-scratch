@@ -1,4 +1,4 @@
-import { setFavorite, deleteFavorite } from './playlist.action'
+import { setFavorite, deleteFavorite, getVideoSource } from './playlist.action'
 import { loginRequest, logoutRequest, registerRequest } from './account.action'
 
 export {
@@ -6,5 +6,6 @@ export {
   deleteFavorite,
   loginRequest,
   logoutRequest,
-  registerRequest
+  registerRequest,
+  getVideoSource
 }

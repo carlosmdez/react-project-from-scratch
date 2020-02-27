@@ -3,7 +3,8 @@ import {
   DELETE_FAVORITE,
   LOGIN_REQUEST,
   LOGOUT_REQUEST,
-  REGISTER_REQUEST
+  REGISTER_REQUEST,
+  GET_VIDEO_SOURCE
 } from '../types.actions'
 import { initialState } from '../../assets/data/initialState'
 
@@ -24,6 +25,15 @@ const playlistReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         user: payload
+      }
+
+    case GET_VIDEO_SOURCE:
+      return {
+        ...state,
+        playing:
+          state.trends.find(item => item.id === +payload) ||
+          state.originals.find(item => item.id === +payload) ||
+          {}
       }
 
     default:

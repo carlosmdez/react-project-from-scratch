@@ -1,4 +1,8 @@
-import { SET_FAVORITE, DELETE_FAVORITE } from '../types.actions'
+import {
+  SET_FAVORITE,
+  DELETE_FAVORITE,
+  GET_VIDEO_SOURCE
+} from '../types.actions'
 
 export const setFavorite = payload => ({
   type: SET_FAVORITE,
@@ -7,5 +11,10 @@ export const setFavorite = payload => ({
 
 export const deleteFavorite = payload => ({
   type: DELETE_FAVORITE,
+  payload
+})
+
+export const getVideoSource = payload => ({
+  type: GET_VIDEO_SOURCE,
   payload
 })
