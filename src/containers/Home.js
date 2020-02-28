@@ -1,31 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { connect } from 'react-redux'
 
-import Header from '../components/Header'
 import Search from '../components/Search'
 import Categories from '../components/Categories'
 import Carousel from '../components/Carousel'
 import CarouselItem from '../components/CarouselItem'
-import Footer from '../components/Footer'
-import useInitialState from '../hooks/useInitialState'
-import '../assets/styles/App.scss'
 
-const API = 'http://localhost:3000/initalState'
-
-const App = () => {
-  const videos = useInitialState(API)
-
-  const { mylist, trends, originals } = videos
-
+const Home = props => {
+  const { myList, trends, originals } = props
   let renderMyList = null
   let renderTrends = null
   let renderOriginals = null
 
-  if (mylist.length > 0) {
+  if (myList.length > 0) {
     renderMyList = (
       <Categories title='Bienvenidos'>
         <Carousel>
-          {mylist.map(item => (
-            <CarouselItem key={item.id} {...item} />
+          {myList.map(item => (
+            //TODO: Create a unique key instead a random number.
+            <CarouselItem key={Math.random()} isList {...item} />
           ))}
         </Carousel>
       </Categories>
@@ -56,17 +49,19 @@ const App = () => {
     )
   }
   return (
-    <div className='app'>
-      <Header />
-      <Search />
+    <>
+      <Search isHome />
       {renderMyList}
       {renderTrends}
       {renderOriginals}
-      <Footer />
-    </div>
+    </>
   )
 }
 
-export default App
+const mapStateToProps = state => {
+  const { myList, trends, originals } = state.playlistReducer
+  return { myList, trends, originals }
+}
 
-
+//export default connect(mapStateToProps, mapDispatchToProps)(Component Name)
+export default connect(mapStateToProps, null)(Home)
